@@ -7,7 +7,7 @@ var library = (function() {
 			return (Math.floor(d.getTime() / 1000)).toString();
 		},
 		UnixMillisecond: function(){
-			return d.getTime().toString();
+			return d.getUTCMilliseconds().toString();
 		}
 	  }
 	})(),
@@ -136,7 +136,9 @@ var library = (function() {
 				var dayTwo = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 				return dayTwo[d.getDay()];
 			},
-			WeekOfYear: function(){}
+			WeekOfYear: function(){
+				return (Math.ceil(((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(d.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000) / 7)).toString();
+			}
 		}
 	})(),
 	Month: (function(){
@@ -201,8 +203,23 @@ var library = (function() {
 		return {
 			DayOfYear: (function(){
 				return {
-					Numeral: function(){},
-					Ordinal: function(){}
+					Numeral: function(){
+						return ((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(d.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000).toString();
+					},
+					Ordinal: function(){
+						var dayOfYear = ((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(d.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000).toString();
+						if (dayOfYear.charAt(dayOfYear.length - 1) === '1') {
+							return dayOfYear + 'st';
+						}else if (dayOfYear.charAt(dayOfYear.length - 1) === '2') {
+							return dayOfYear + 'nd';
+						}else if (dayOfYear.charAt(dayOfYear.length - 1) === '3') {
+							return dayOfYear + 'rd';
+						}else {
+							return dayOfYear + 'th';
+						
+						}
+						
+					}
 				}
 			})(),
 			YearFull: function(){
@@ -213,6 +230,9 @@ var library = (function() {
 			}
 		}
 	})(),
-	Defaults: function(){}
+	Defaults: function(){
+		return (.toString();
+		
+	}
   }
 })();
