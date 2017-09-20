@@ -7,7 +7,7 @@ var library = (function() {
 			return (Math.floor(d.getTime() / 1000)).toString();
 		},
 		UnixMillisecond: function(){
-			return d.getUTCMilliseconds().toString();
+			return d.getTime().toString();
 		}
 	  }
 	})(),
@@ -231,7 +231,7 @@ var library = (function() {
 		}
 	})(),
 	Defaults: function(){
-		return (.toString();
+		// return (.toString();
 		
 	}
   }
